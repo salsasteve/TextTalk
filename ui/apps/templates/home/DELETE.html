@@ -1,0 +1,87 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tooltips {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/6en8XCp+HHAAK5GSLf2xlYtvJ8U2Q4U+9cuEnJoa3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock stylesheets %}
+
+{% block content %}
+    <style>   
+        .chat-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #chat-container {
+            width: 100%;
+            max-width: 768px;
+        }
+    </style>
+    <div class="chat-wrapper">
+    <div id="chat-container">
+        <div class="card">
+            <div class="card-header">
+                ChatGPT UI
+            </div>
+            <div class="card-body">
+                <div id="chat-history" class="mb-3" style="height: 300px; overflow-y: scroll;">
+                    <!-- Chat messages will appear here -->
+                </div>
+                <form id="chat-form">
+                    <div class="input-group">
+                        <input type="text" id="user-input" class="form-control" placeholder="Type your message here..." autocomplete="off" required>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-xs1lxFDl19HeH/public/../yl7V/zxFx//pPRuuR+MnzmTTJ7U2/TRjQ9fY1/3iGp8Ly3C" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').on('submit', function(event) {
+                event.preventDefault();
+
+                var userInput = $('#user-input').val().trim();
+
+                if (userInput) {
+                    // Add user message to chat history
+                    $('#chat-history').append('<div class="card-text text-end mb-2"><strong>You:</strong> ' + userInput + '</div>');
+                    
+                    // Send user input to Flask server
+                    $.ajax({
+                        type: 'POST',
+                        url: '/chat', // Update this with the Flask route for handling chat messages
+                        data: JSON.stringify({ 'message': userInput }),
+                        contentType: 'application/json',
+                        success: function(response) {
+                            // Add ChatGPT response to chat history
+                            $('#chat-history').append('<div class="card-text text-start mb-2"><strong>ChatGPT:</strong> ' + response.message + '</div>');
+                            
+                            // Scroll to bottom of chat history
+                            $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
+                        },
+                        error: function() {
+                            alert('An error occurred. Please try again.');
+                        }
+                    });
+                    // Clear the input field
+                    $('#user-input').val('');
+                }
+            });
+        });
+    </script>
+{% endblock javascripts %}
+
+
