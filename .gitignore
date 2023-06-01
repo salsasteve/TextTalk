@@ -72,3 +72,8 @@ apps/static/assets/.temp
 # zip
 *.zip
 
+# AWS 
+.aws-sam
+.sam
+
+
