@@ -23,6 +23,21 @@ Resources:
 
   Api:
     Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowMethods: 
+          - GET
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+          - Accept
+          - Access-Control-Allow-Headers
+          - Access-Control-Request-Method
+          - Access-Control-Request-Headers
+          - Authorization
 
 Outputs:
   ApiUrl:
