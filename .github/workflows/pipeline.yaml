@@ -12,7 +12,7 @@ on:
 env:
   PIPELINE_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   PIPELINE_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  SAM_TEMPLATE: agent/template.yml
+  SAM_TEMPLATE: agent/template.yaml
   TESTING_STACK_NAME: talktodoc-dev
   TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::945791744579:role/aws-sam-cli-managed-dev-pipe-PipelineExecutionRole-1X540P7GZNME0
   TESTING_CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::945791744579:role/aws-sam-cli-managed-dev-p-CloudFormationExecutionR-1J4PGBC942MEY
@@ -22,10 +22,10 @@ env:
   # testing "sam package" and "sam deploy" commands.
   # TESTING_IMAGE_REPOSITORY = '0123456789.dkr.ecr.region.amazonaws.com/repository-name'
   TESTING_REGION: us-east-1
-  PROD_STACK_NAME: talktodoc
+  PROD_STACK_NAME: talktodoc-prod
   PROD_PIPELINE_EXECUTION_ROLE: arn:aws:iam::945791744579:role/aws-sam-cli-managed-prod-pip-PipelineExecutionRole-J7J2NY4KXB2O
   PROD_CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::945791744579:role/aws-sam-cli-managed-prod-CloudFormationExecutionR-16QAKYS8KRKYX
-  PROD_ARTIFACTS_BUCKET: talktodoc
+  PROD_ARTIFACTS_BUCKET: talktodoc-prod
   # If there are functions with "Image" PackageType in your template,
   # uncomment the line below and add "--image-repository ${PROD_IMAGE_REPOSITORY}" to
   # prod "sam package" and "sam deploy" commands.
