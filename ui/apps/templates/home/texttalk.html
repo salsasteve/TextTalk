@@ -68,7 +68,7 @@
                 $('#chat-history').append('<div class="card-text text-end mb-2"><strong>You:</strong> ' + userInput + '</div>');
 
                 // Compose the API request URL
-                var apiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(userInput);
+                var apiUrl = 'https://ibqte7iq67.execute-api.us-east-1.amazonaws.com/';
                 
                 // Send user input to Flask server
                 $.ajax({
@@ -86,15 +86,16 @@
                     success: function(response) {
                         // Process the API response and generate the message to display
                         var message = '';
-                        if (response && response.length > 0) {
-                            var definition = response[0].meanings[0].definitions[0].definition;
-                            message = 'Definition: ' + definition;
+                        console.log(response);
+                        msg_len = response['message'].length
+                        if (response && msg_len > 0) {
+                            message = response['message'];
                         } else {
                             message = 'No definition found for "' + userInput + '".';
                         }
 
                         // Add the API response to chat history
-                        $('#chat-history').append('<div class="card-text text-start mb-2"><strong>Dictionary API:</strong> ' + message + '</div>');
+                        $('#chat-history').append('<div class="card-text text-start mb-2">' + message + '</div>');
                         
                         // Scroll to bottom of chat history
                         $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);

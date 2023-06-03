@@ -1,7 +1,7 @@
 version = 0.1
 [default.deploy.parameters]
 stack_name = "talktodoc"
-resolve_s3 = true
+s3_bucket = "talktodoc"
 s3_prefix = "talktodoc"
 region = "us-east-1"
 confirm_changeset = true

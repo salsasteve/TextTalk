@@ -1,0 +1,18 @@
+version = 0.1
+[default.pipeline_bootstrap.parameters]
+pipeline_user = "arn:aws:iam::945791744579:user/aws-sam-cli-managed-dev-pipeline-reso-PipelineUser-1G960ILTCMLOR"
+permissions_provider = "AWS IAM"
+
+[dev.pipeline_bootstrap.parameters]
+pipeline_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-dev-pipe-PipelineExecutionRole-1X540P7GZNME0"
+cloudformation_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-dev-p-CloudFormationExecutionR-1J4PGBC942MEY"
+artifacts_bucket = "talktodoc-dev"
+image_repository = ""
+region = "us-east-1"
+
+[prod.pipeline_bootstrap.parameters]
+pipeline_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-prod-pip-PipelineExecutionRole-J7J2NY4KXB2O"
+cloudformation_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-prod-CloudFormationExecutionR-16QAKYS8KRKYX"
+artifacts_bucket = "talktodoc"
+image_repository = ""
+region = "us-east-1"
