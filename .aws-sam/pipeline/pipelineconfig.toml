@@ -11,7 +11,7 @@ stack_name = "talktodoc-dev"
 s3_bucket = "talktodoc-dev"
 image_repository = ""
 region = "us-east-1"
-parameter_overrides = "Environment=\"dev\""
+Environment="dev"
 
 
 
@@ -22,4 +22,4 @@ artifacts_bucket = "talktodoc-prod"
 stack_name = "talktodoc-prod"
 s3_bucket = "talktodoc-prod"
 image_repository = ""
-parameter_overrides = "Environment=\"prod\""
+Environment="prod"
