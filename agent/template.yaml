@@ -33,7 +33,7 @@ Resources:
   Api:
     Type: AWS::Serverless::HttpApi
     Properties:
-      StageName: !Sub talktodoc-${Environment}
+      StageName: !Sub ${Environment}
       CorsConfiguration:
         AllowOrigins:
           - "*"
