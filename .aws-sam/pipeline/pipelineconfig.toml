@@ -7,12 +7,20 @@ permissions_provider = "AWS IAM"
 pipeline_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-dev-pipe-PipelineExecutionRole-1X540P7GZNME0"
 cloudformation_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-dev-p-CloudFormationExecutionR-1J4PGBC942MEY"
 artifacts_bucket = "talktodoc-dev"
+stack_name = "talktodoc-dev"
+s3_bucket = "talktodoc-dev"
 image_repository = ""
 region = "us-east-1"
+parameter_overrides = "Environment=\"dev\""
+
+
 
 [prod.pipeline_bootstrap.parameters]
 pipeline_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-prod-pip-PipelineExecutionRole-J7J2NY4KXB2O"
 cloudformation_execution_role = "arn:aws:iam::945791744579:role/aws-sam-cli-managed-prod-CloudFormationExecutionR-16QAKYS8KRKYX"
-artifacts_bucket = "talktodoc"
+artifacts_bucket = "talktodoc-prod"
+stack_name = "talktodoc-prod"
+s3_bucket = "talktodoc-prod"
 image_repository = ""
 region = "us-east-1"
+parameter_overrides = "Environment=\"prod\""
