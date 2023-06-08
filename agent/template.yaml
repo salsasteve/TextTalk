@@ -22,6 +22,8 @@ Resources:
       CodeUri: src/
       Handler: app.main.handler
       Runtime: python3.10
+      Timeout: 30
+      MemorySize: 256
       Architectures:
       - x86_64
       Events:
