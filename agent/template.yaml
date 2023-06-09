@@ -45,17 +45,17 @@ Resources:
   #       AllowMethods: "'*'"
   #       AllowHeaders: "'*'"
   #       AllowOrigin: "'*'"
-Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  ApiUrl:
-    Description: URL of your API endpoint
-    Value:
-      Fn::Sub: 'https://${Api}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
-  Function:
-    Description: talktodoc Lambda Function ARN
-    Value: !GetAtt Function.Arn
-  HelloWorldFunctionIamRole:
-    Description: Implicit IAM Role created for talktodoc function
-    Value: !GetAtt FunctionRole.Arn
+# Outputs:
+#   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+#   # Find out more about other implicit resources you can reference within SAM
+#   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+#   ApiUrl:
+#     Description: URL of your API endpoint
+#     Value:
+#       Fn::Sub: 'https://${Api}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+#   Function:
+#     Description: talktodoc Lambda Function ARN
+#     Value: !GetAtt Function.Arn
+#   HelloWorldFunctionIamRole:
+#     Description: Implicit IAM Role created for talktodoc function
+#     Value: !GetAtt FunctionRole.Arn
