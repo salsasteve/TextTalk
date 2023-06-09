@@ -8,7 +8,12 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 30
+  Api:
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
 
 Parameters:
   Environment:
@@ -22,48 +27,24 @@ Resources:
       CodeUri: src/
       Handler: app.main.handler
       Runtime: python3.10
-      Timeout: 30
       MemorySize: 256
       Architectures:
       - x86_64
       Events:
-        Api:
-          Type: HttpApi
+        DefaultEndpoint:
+          Type: Api
           Properties:
-            ApiId: !Ref Api
+            Path: /{proxy+}
+            Method: ANY
 
-  Api:
-    Type: AWS::Serverless::HttpApi
-    Properties:
-      StageName: !Sub ${Environment}
-      CorsConfiguration:
-        AllowOrigins:
-          - "*"
-        AllowMethods: 
-          - GET
-          - POST
-          - OPTIONS
-        AllowHeaders:
-          - Content-Type
-          - Accept
-          - Access-Control-Allow-Headers
-          - Access-Control-Request-Method
-          - Access-Control-Request-Headers
-          - Authorization
-
-  ApplicationResourceGroup:
-    Type: AWS::ResourceGroups::Group
-    Properties:
-      Name:
-        Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
-      ResourceQuery:
-        Type: CLOUDFORMATION_STACK_1_0
-  ApplicationInsightsMonitoring:
-    Type: AWS::ApplicationInsights::Application
-    Properties:
-      ResourceGroupName:
-        Ref: ApplicationResourceGroup
-      AutoConfigurationEnabled: 'true'
+  # Api:
+  #   Type: AWS::Serverless::Api
+  #   Properties:
+  #     StageName: !Sub ${Environment}
+  #     Cors:
+  #       AllowMethods: "'*'"
+  #       AllowHeaders: "'*'"
+  #       AllowOrigin: "'*'"
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
